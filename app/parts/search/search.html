@@ -1,0 +1,28 @@
+<div id="search_view" class="content">
+  <div id="search_field">
+    <h1>{{title | uppercase}}</h1>
+    <form id="search_form" action="#">
+        <div id="search_media" class="float_left">
+          <input id="server_provider_name" type="text" ng-keyup="searchKeyup($event)" name="search_media_field" value="{{searchValue}}" placeholder="loading..." disabled/>
+          <!--<p class="error_server_name" ng-show="txtValidation && error_server_name">{{error_server_name}}</p>-->
+        </div>
+        <div id="media_channels" class="float_left">
+          <a href="">youtube</a>
+        </div>
+        <div class="clear"></div>
+    </form>
+  </div>
+  <div id="results">
+    <div id="results_count">
+      <p ng-show="results.length == 0 || results.items.length == 0">No results found</p>
+      <p ng-show="results.items.length > 0"><b>{{results.pageInfo.totalResults}}</b><b ng-show="results.pageInfo.totalResults == 1000000">+</b> results found (showing {{results.items.length}})</p>
+    </div>
+    <!--<result class="media_search_result float_left block" resultData='results'></result>-->
+    <a class="media_search_result float_left" ng-repeat="resultData in results.items" result-data='resultData' result>
+    </a>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<!--Third party API's-->
+<script src="https://apis.google.com/js/client.js?onload=handleGAPILoaded"></script>
